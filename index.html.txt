@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Numeta - Planejamento de Metas</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4CAF50, #2e7d32);
+      margin: 0;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 40px;
+    }
+
+    section {
+      max-width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #388e3c;
+    }
+
+    .resultado {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Numeta</h1>
+  <p>Organize seus objetivos com matemática</p>
+</header>
+
+<section>
+  <h2>Meta Financeira</h2>
+
+  <input type="number" id="valorTotal" placeholder="Valor da meta (R$)">
+  <input type="number" id="meses" placeholder="Meses">
+
+  <button onclick="calcular()">Calcular</button>
+
+  <div class="resultado" id="resultado"></div>
+</section>
+
+<section>
+  <h2>Progresso</h2>
+
+  <input type="number" id="guardado" placeholder="Já guardado (R$)">
+
+  <button onclick="progresso()">Ver progresso</button>
+
+  <div class="resultado" id="progressoResultado"></div>
+</section>
+
+<script>
+  function calcular() {
+    let total = parseFloat(document.getElementById("valorTotal").value);
+    let meses = parseFloat(document.getElementById("meses").value);
+
+    if (total > 0 && meses > 0) {
+      let porMes = total / meses;
+      document.getElementById("resultado").innerText =
+        "Guardar por mês: R$ " + porMes.toFixed(2);
+    } else {
+      document.getElementById("resultado").innerText =
+        "Preencha corretamente.";
+    }
+  }
+
+  function progresso() {
+    let total = parseFloat(document.getElementById("valorTotal").value);
+    let guardado = parseFloat(document.getElementById("guardado").value);
+
+    if (total > 0 && guardado >= 0) {
+      let porcentagem = (guardado / total) * 100;
+      document.getElementById("progressoResultado").innerText =
+        "Progresso: " + porcentagem.toFixed(1) + "%";
+    } else {
+      document.getElementById("progressoResultado").innerText =
+        "Preencha corretamente.";
+    }
+  }
+</script>
+
+</body>
+</html>
